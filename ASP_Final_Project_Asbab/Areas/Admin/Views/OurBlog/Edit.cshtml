@@ -1,0 +1,42 @@
+﻿@using ASP_Final_Project_Asbab.Models
+@model OurBlog
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Edit</h2>
+
+<div class="container">
+    <div class="row">
+        <h2>Edit</h2>
+        <form method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(t => t.Title)
+                @Html.TextBoxFor(t => t.Title, new { @class = "form-control", type = "text", placeholder = "Title" })
+                @Html.ValidationMessageFor(t => t.Title, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(t => t.Description)
+                @Html.TextBoxFor(t => t.Description, new { @class = "form-control", type = "text", placeholder = "Desctiption" })
+                @Html.ValidationMessageFor(t => t.Description, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(t => t.Photo)
+                @Html.TextBoxFor(t => t.Photo, new { @class = "form-control", type = "file", accept = "image/*" })
+                @Html.ValidationMessageFor(t => t.Photo, null, new { @class = "text-danger" })
+            </div>
+            <input type="submit" class="btn btn-success" value="Edit" />
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}

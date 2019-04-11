@@ -1,0 +1,44 @@
+﻿@using ASP_Final_Project_Asbab.Models
+@model IEnumerable<OurBlog>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <h2>Our Blog</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">DateTime</th>
+                    <th scope="col"><a class="btn btn-success" style="width: 200px;" href='@Url.Action("Create","OurBlog", new { area = "Admin" })'><i class="fas fa-plus"></i> Create new one</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ var id = 0;}
+                @foreach (var ourBlog in Model)
+                {
+                <tr>
+                    <th scope="row">@(++id)</th>
+                    <td>@ourBlog.Title</td>
+                    <td>@ourBlog.Description</td>
+                    <td><img src="~/images/@ourBlog.Image" width="50" /></td>
+                    @*@{ string datetime = DateTime.Now.ToString();
+            string createdate = Convert.ToDateTime(datetime).ToString("MMMM dd, yyyy");
+        }*@
+                    <td>@ourBlog.Date</td>
+                    <td><a class="btn btn-success" href="@Url.Action("Edit","OurBlog", new { area = "Admin", ourBlog.Id })"><i class="fas fa-edit"></i> Edit</a></td>
+                    <td><a class="btn btn-success" href="@Url.Action("Delete","OurBlog", new { area = "Admin", ourBlog.Id })"><i class="fas fa-user-minus"></i> Delete</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

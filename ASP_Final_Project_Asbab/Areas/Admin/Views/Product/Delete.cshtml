@@ -1,0 +1,58 @@
+﻿@model ASP_Final_Project_Asbab.Models.ViewModel.ViewModelClasses
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<div class="container">
+    <div class="row">
+        <form method="post" enctype="multipart/form-data">
+            <div class="alert alert-danger" role="alert">
+                Bu postu silmək istədiyinizə əminsiziniz??
+            </div>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(t => t.Product.Name)
+                @Html.TextBoxFor(t => t.Product.Name, new { @class = "form-control", type = "text", placeholder = "Name" })
+                @Html.ValidationMessageFor(t => t.Product.Name, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(t => t.Product.Details)
+                @Html.TextBoxFor(t => t.Product.Details, new { @class = "form-control", type = "text", placeholder = "Details" })
+                @Html.ValidationMessageFor(t => t.Product.Details, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(t => t.Product.Price)
+                @Html.TextBoxFor(t => t.Product.Price, new { @class = "form-control", type = "text", placeholder = "Price" })
+                @Html.ValidationMessageFor(t => t.Product.Price, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(t => t.Product.DiscountPrice)
+                @Html.TextBoxFor(t => t.Product.DiscountPrice, new { @class = "form-control", type = "text", placeholder = "Discount Price" })
+                @Html.ValidationMessageFor(t => t.Product.DiscountPrice, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(t => t.Product.Photo)
+                @Html.TextBoxFor(t => t.Product.Photo, new { @class = "form-control", type = "file", accept = "image/*" })
+                @Html.ValidationMessageFor(t => t.Product.Photo, null, new { @class = "text-danger" })
+            </div>
+
+
+            <select class="form-control" name="CategoryId">
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+
+            <input type="submit" class="btn btn-success" value="Delete" />
+        </form>
+    </div>
+</div>

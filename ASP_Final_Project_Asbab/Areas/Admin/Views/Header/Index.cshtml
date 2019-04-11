@@ -1,0 +1,38 @@
+﻿@using ASP_Final_Project_Asbab.Models
+@model IEnumerable<Header>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Header</h2>
+
+<div class="container">
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Body</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col"><a class="btn btn-success" href='@Url.Action("Create","Header", new { area = "Admin" })' ><i class="fas fa-plus"></i> Create new one</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ var id = 0;}
+                @foreach (var header in Model)
+                {
+                    <tr>
+                        <th scope="row">@(++id)</th>
+                        <td>@header.Title</td>
+                        <td>@header.Body</td>
+                        <td><img src="~/images/@header.Image" width="50" /></td>
+                        <td><a class="btn btn-success" href="@Url.Action("Edit","Header", new { area = "Admin", header.Id })"><i class="fas fa-edit"></i> Edit</a></td>
+                        <td><a class="btn btn-success" href="@Url.Action("Delete","Header", new { area = "Admin", header.Id })"><i class="fas fa-user-minus"></i> Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

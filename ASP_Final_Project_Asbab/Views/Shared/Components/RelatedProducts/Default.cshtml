@@ -1,0 +1,21 @@
+﻿@using ASP_Final_Project_Asbab.Models
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View</h2>
+
+<ul class="product__small__images" role="tablist">
+
+    @foreach (var product in Model)
+    {
+        <li role="presentation" class="pot-small-img active">
+            <a href="#img-tab-1" role="tab" data-toggle="tab">
+                <img src="~/images/@product.Image" width="100" alt="small-image">
+            </a>
+        </li>
+    }
+
+</ul>

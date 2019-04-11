@@ -1,0 +1,26 @@
+﻿@using ASP_Final_Project_Asbab.Models
+@model Category
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <h2>Delete</h2>
+        <form method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div class="alert alert-danger" role="alert">
+                Bu kateqoriyani silmək istədiyinizə əminsiziniz??
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(t => t.Name)
+                @Html.TextBoxFor(t => t.Name, new { @class = "form-control", type = "text", placeholder = "Name" })
+                @Html.ValidationMessageFor(t => t.Name, null, new { @class = "text-danger" })
+            </div>
+
+            <input type="submit" class="btn btn-success" value="Delete" />
+        </form>
+    </div>
+</div>

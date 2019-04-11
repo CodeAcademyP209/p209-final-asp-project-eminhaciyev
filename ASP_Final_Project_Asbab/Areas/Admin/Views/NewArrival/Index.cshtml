@@ -1,0 +1,39 @@
+﻿@using ASP_Final_Project_Asbab.Models
+@model IEnumerable<NewArrival>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Discount Price</th>
+                    <th scope="col"><a class="btn btn-success" href='@Url.Action("Create","NewArrival", new { area = "Admin" })'><i class="fas fa-plus"></i> Create new one</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ var id = 0;}
+                @foreach (var arrival in Model)
+                {
+                <tr>
+                    <th scope="row">@(++id)</th>
+                    <td>@arrival.Name</td>
+                    <td>@arrival.Price</td>
+                    <td>@arrival.DiscountPrice</td>
+                    <td><img src="~/images/@arrival.Image" width="50" /></td>
+                    <td><a class="btn btn-success" href="@Url.Action("Edit","NewArrival", new { area = "Admin", arrival.Id })"><i class="fas fa-edit"></i> Edit</a></td>
+                    <td><a class="btn btn-success" href="@Url.Action("Delete","NewArrival", new { area = "Admin", arrival.Id })"><i class="fas fa-user-minus"></i> Delete</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@using ASP_Final_Project_Asbab.Models
+@model List<Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Discount Price</th>
+                    <th scope="col">Category</th>
+                    <th scope="col"><a class="btn btn-success" href='@Url.Action("Create","Product", new { area = "Admin" })'><i class="fas fa-plus"></i> Create new one</a></th>
+                </tr>
+            </thead>
+            <tbody>               
+                @foreach (var product in Model)
+                {
+                <tr>
+                    <th scope="row">@product.Id</th>
+                    <td>@product.Name</td>
+                    <td>@product.Details</td>
+                    <td>@product.Price</td>
+                    <td>@product.DiscountPrice</td>
+                    <td>@product.Category.Name</td>
+                    <td><img src="~/images/@product.Image" width="50" /></td>
+                    <td><a class="btn btn-success" href="@Url.Action("Edit","Product", new { area = "Admin", product.Id })"><i class="fas fa-edit"></i> Edit</a></td>
+                    <td><a class="btn btn-success" href="@Url.Action("Delete","Product", new { area = "Admin", product.Id })"><i class="fas fa-user-minus"></i> Delete</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

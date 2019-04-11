@@ -1,0 +1,46 @@
+﻿@using ASP_Final_Project_Asbab.Models
+@model NewArrival
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<div class="container">
+    <div class="row">
+        <form method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="alert alert-danger" role="alert">
+                Bu postu silmək istədiyinizə əminsiziniz??
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(t => t.Name)
+                @Html.TextBoxFor(t => t.Name, new { @class = "form-control", type = "text", placeholder = "Name", @readonly = "readonly" })
+                @Html.ValidationMessageFor(t => t.Name, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(t => t.Price)
+                @Html.TextBoxFor(t => t.Price, new { @class = "form-control", type = "text", placeholder = "Price" })
+                @Html.ValidationMessageFor(t => t.Price, null, new { @class = "text-danger", @readonly = "readonly" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(t => t.DiscountPrice)
+                @Html.TextBoxFor(t => t.DiscountPrice, new { @class = "form-control", type = "text", placeholder = "Discount Price" })
+                @Html.ValidationMessageFor(t => t.DiscountPrice, null, new { @class = "text-danger", @readonly = "readonly" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(t => t.Photo)
+                @Html.TextBoxFor(t => t.Photo, new { @class = "form-control", type = "file", accept = "image/*", @readonly = "readonly" })
+                @Html.ValidationMessageFor(t => t.Photo, null, new { @class = "text-danger" })
+
+            </div>
+            <input type="submit" class="btn btn-success" value="Delete" />
+        </form>
+    </div>
+</div>
+

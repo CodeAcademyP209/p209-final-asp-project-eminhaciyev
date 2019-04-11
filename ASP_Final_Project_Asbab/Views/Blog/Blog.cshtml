@@ -1,0 +1,190 @@
+﻿@model IEnumerable<OurBlog>
+@{
+    ViewData["Title"] = "Blog";
+}
+
+
+    <div class="wrapper">
+        
+
+        <div class="body__overlay"></div>
+        <!-- Start Offset Wrapper -->
+        <div class="offset__wrapper">
+            <!-- Start Search Popap -->
+            <div class="search__area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="search__inner">
+                                <form action="#" method="get">
+                                    <input placeholder="Search here... " type="text">
+                                    <button type="submit"></button>
+                                </form>
+                                <div class="search__close__btn">
+                                    <span class="search__close__btn_icon"><i class="zmdi zmdi-close"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Search Popap -->
+            <!-- Start Cart Panel -->
+            <div class="shopping__cart">
+                <div class="shopping__cart__inner">
+                    <div class="offsetmenu__close__btn">
+                        <a href="#"><i class="zmdi zmdi-close"></i></a>
+                    </div>
+                    <div class="shp__cart__wrap">
+                        <div class="shp__single__product">
+                            <div class="shp__pro__thumb">
+                                <a href="#">
+                                    <img src="~/css/images/product-2/sm-smg/1.jpg" alt="product images">
+                                </a>
+                            </div>
+                            <div class="shp__pro__details">
+                                <h2><a href="product-details.html">BO&Play Wireless Speaker</a></h2>
+                                <span class="quantity">QTY: 1</span>
+                                <span class="shp__price">$105.00</span>
+                            </div>
+                            <div class="remove__btn">
+                                <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
+                            </div>
+                        </div>
+                        <div class="shp__single__product">
+                            <div class="shp__pro__thumb">
+                                <a href="#">
+                                    <img src="~/css/images/product-2/sm-smg/2.jpg" alt="product images">
+                                </a>
+                            </div>
+                            <div class="shp__pro__details">
+                                <h2><a href="product-details.html">Brone Candle</a></h2>
+                                <span class="quantity">QTY: 1</span>
+                                <span class="shp__price">$25.00</span>
+                            </div>
+                            <div class="remove__btn">
+                                <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="shoping__total">
+                        <li class="subtotal">Subtotal:</li>
+                        <li class="total__price">$130.00</li>
+                    </ul>
+                    <ul class="shopping__btn">
+                        <li><a href="cart.html">View Cart</a></li>
+                        <li class="shp__checkout"><a href="checkout.html">Checkout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Cart Panel -->
+        </div>
+        <!-- End Offset Wrapper -->
+        <!-- Start Bradcaump area -->
+        <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(/images/asbabphotos/image1920x270.jpg) no-repeat scroll center center;">
+            <div class="ht__bradcaump__wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="bradcaump__inner">
+                                <nav class="bradcaump-inner">
+                                    <a class="breadcrumb-item" href="index.html">Home</a>
+                                    <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
+                                    <span class="breadcrumb-item active">Blog</span>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bradcaump area -->
+        <!-- Start Blog Area -->
+        <section class="htc__blog__area bg__white ptb--100">
+            <div class="container">
+                <div class="row">
+                    <div class="ht__blog__wrap blog--page clearfix">
+                        <!-- Start Single Blog -->
+                        @foreach (var blog in Model)
+                        {
+                            <div class="col-md-6 col-lg-4 col-sm-12 col-xs-12">
+                                <div class="blog">
+                                    <div class="blog__thumb">
+                                        <a href="/Product/ProductBlogDetails/@blog.Id">
+                                            <img src="~/images/@blog.Image" alt="blog images">
+                                        </a>
+                                    </div>
+                                    <div class="blog__details">
+                                        <div class="bl__date">
+                                            <span>@blog.Date</span>
+                                        </div>
+                                        <h2><a href="/Product/ProductBlogDetails/@blog.Id">@blog.Title</a></h2>
+                                        @{
+                                            string description = "";
+
+                                            string sentences = blog.Description;
+
+                                            char[] word = new char[] { '.' };
+
+                                            string[] arr = sentences.Split(word, StringSplitOptions.None);
+
+                                            for (int i = 0; i < arr.Length; i++)
+                                            {
+                                                if (i == 0)
+                                                {
+                                                    description = arr[0];
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        <p>@description</p>
+                                        <div class="blog__btn">
+                                            <a href="/Product/ProductBlogDetails/@blog.Id">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <!-- End Single Blog -->
+                    </div>
+                </div>
+                <!-- Start PAgenation -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="htc__pagenation">
+                            <li><a href="#"><i class="zmdi zmdi-chevron-left"></i></a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#"><i class="zmdi zmdi-more"></i></a></li>
+                            <li><a href="#">19</a></li>
+                            <li class="active"><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End PAgenation -->
+            </div>
+        </section>
+        <!-- End Blog Area -->
+        <!-- Start Banner Area -->
+        <div class="htc__banner__area">
+            <ul class="banner__list owl-carousel owl-theme clearfix">
+                <li><a href="product-details.html"><img src="~/css/images/banner/bn-3/1.jpg" alt="banner images"></a></li>
+                <li><a href="product-details.html"><img src="~/css/images/banner/bn-3/2.jpg" alt="banner images"></a></li>
+                <li><a href="product-details.html"><img src="~/css/images/banner/bn-3/3.jpg" alt="banner images"></a></li>
+                <li><a href="product-details.html"><img src="~/css/images/banner/bn-3/4.jpg" alt="banner images"></a></li>
+                <li><a href="product-details.html"><img src="~/css/images/banner/bn-3/5.jpg" alt="banner images"></a></li>
+                <li><a href="product-details.html"><img src="~/css/images/banner/bn-3/6.jpg" alt="banner images"></a></li>
+                <li><a href="product-details.html"><img src="~/css/images/banner/bn-3/1.jpg" alt="banner images"></a></li>
+                <li><a href="product-details.html"><img src="~/css/images/banner/bn-3/2.jpg" alt="banner images"></a></li>
+            </ul>
+        </div>
+        <!-- End Banner Area -->
+        <!-- End Banner Area -->
+       
+        <!-- End Footer Style -->
+    </div>
+    <!-- Body main wrapper end -->
+ 
